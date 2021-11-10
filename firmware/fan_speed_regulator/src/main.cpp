@@ -8,11 +8,10 @@
 #define FAN_PIN PB0 // Analog output pin that the FAN is attached to
 #define TEMP_SENSOR_PIN PB2 // Digital input pin that the DS18B20 sensor is attached to
 
-#define PWM_MIN_VALUE 128
+#define PWM_MIN_VALUE 50
 #define TEMP_START_TEMP 30
 
-
-uint8_t sensorValue;       // value read from the potentiometer
+uint8_t sensorValue;       // value read from the DS18B20
 int8_t temperature;         //value of read temperature
 int8_t tempDiff;
 int16_t outputValue;
@@ -24,7 +23,7 @@ int8_t readTemperature()
   ds.reset();
   ds.write(DS18B20_SKIP_ROM);
   ds.write(DS18B20_CONVERT_T);
-  delay(1000);
+  _delay_ms(1000);
 
   ds.reset();
   ds.write(DS18B20_SKIP_ROM);
@@ -38,17 +37,29 @@ int8_t readTemperature()
   return msb | lsb;
 }
 
+void startPwm()
+{
+  TCCR0B |= _BV(CS00); // start timer without prescaler
+  TCCR0A |= _BV(COM0A1);
+}
+
+void stopPwm()
+{
+  TCCR0B &= ~(_BV(CS02)|_BV(CS01)|_BV(CS00)); // stop timer
+  TCCR0A &= ~(_BV(COM0A1)|_BV(COM0A0));
+}
+
 void initPwm()
 {
   DDRB |= _BV(FAN_PIN); // set PWM pin as OUTPUT
-  TCCR0A |= _BV(COM0A1)| _BV(WGM01)|_BV(WGM00); // set timer mode to FAST PWM and enable PWM signal on pin (AC0A => PB0)
-  TCCR0B |= _BV(CS00); // start timer without prescaler
+  TCCR0A |= _BV(WGM01)|_BV(WGM00); // set timer mode to FAST PWM and enable PWM signal on pin (AC0A => PB0)
 }
 
 void setup() {
   cli();
   // put your setup code here, to run once:
   initPwm();
+  startPwm();
 }
 
 void loop() {
@@ -59,11 +70,11 @@ void loop() {
 
   if (tempDiff >= 0)
   {
-    outputValue = PWM_MIN_VALUE + tempDiff * 4;
+    outputValue = PWM_MIN_VALUE + tempDiff * 10;
 
-    if (outputValue > 254)
+    if (outputValue > 255)
     {
-      outputValue = 254;
+      outputValue = 255;
     }
 
     if (outputValue < 0)
@@ -72,9 +83,12 @@ void loop() {
     }
 
     OCR0A = (uint8_t)outputValue;
+    startPwm();
   }
   else
   {
-    OCR0A = 0;
+    stopPwm();
   }
+
+  _delay_ms(9000);
 }
