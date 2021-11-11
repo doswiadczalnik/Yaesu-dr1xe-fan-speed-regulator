@@ -10,11 +10,13 @@
 
 #define PWM_MIN_VALUE 50
 #define TEMP_START_TEMP 30
+#define PWM_START_VALUE 255
 
 uint8_t sensorValue;       // value read from the DS18B20
 int8_t temperature;         //value of read temperature
 int8_t tempDiff;
 int16_t outputValue;
+boolean isPwmRunning = false;
 
 OneWire ds(TEMP_SENSOR_PIN); 
 
@@ -57,9 +59,7 @@ void initPwm()
 
 void setup() {
   cli();
-  // put your setup code here, to run once:
   initPwm();
-  startPwm();
 }
 
 void loop() {
@@ -82,12 +82,21 @@ void loop() {
       outputValue = 0;
     }
 
-    OCR0A = (uint8_t)outputValue;
-    startPwm();
+    if (!isPwmRunning)
+    {
+      OCR0A = PWM_START_VALUE;
+      startPwm();
+      isPwmRunning = true;
+      _delay_ms(500);
+      OCR0A = (uint8_t)outputValue;
+    }
+    else
+      OCR0A = (uint8_t)outputValue;
   }
   else
   {
     stopPwm();
+    isPwmRunning = false;
   }
 
   _delay_ms(9000);
