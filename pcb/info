@@ -1,0 +1,200 @@
+{
+  "uuid": "90e7c4400824dfef64bffe2018040152",
+  "path": "Offline/PWM%20fan%20temperature%20regulator",
+  "name": "PWM fan temperature regulator",
+  "content": "",
+  "created_at": "2021-10-24 15:31:39",
+  "updated_at": "2021-11-11 20:00:49",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "00c5c8053d44bff982865e1f4a03b5c3",
+      "title": "Main board",
+      "description": "",
+      "docType": "1",
+      "master": "3f7fc38999ef99fed5fe06006bb5c953",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "08f35fce52ac4842be6d40a9914d3920": 1,
+        "3ec77201bbcd4ecd8722658d581a4e60": 2,
+        "fbff61403a574368b0ac2b8760714444": 1,
+        "fd11c9e744c44aeab6011e8bd4c3ea86": 2,
+        "bb009484ef804a24ac5d18c54b249586": 4,
+        "7673f34f99c1428db8c9a80b816cae35": 1,
+        "12c5a57df25049859e1ee191711da510": 1
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "0.33u",
+          1,
+          "C0603",
+          "C1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "f8151fdc728a41ebbc304e11d39e5437",
+            "uuid": "fd11c9e744c44aeab6011e8bd4c3ea86"
+          }
+        ],
+        [
+          "0.1u",
+          1,
+          "C0603",
+          "C2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "f8151fdc728a41ebbc304e11d39e5437",
+            "uuid": "fd11c9e744c44aeab6011e8bd4c3ea86"
+          }
+        ],
+        [
+          "FAN",
+          1,
+          "HDR-F-2.54_1X2",
+          "H1",
+          {
+            "BOM_Supplier Part": "C49661",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "36b1306a115341f4b4d9407fb34974e0",
+            "uuid": "3ec77201bbcd4ecd8722658d581a4e60"
+          }
+        ],
+        [
+          "HDR-F-2.54_1x2",
+          1,
+          "HDR-F-2.54_1X2",
+          "H2",
+          {
+            "BOM_Supplier Part": "C49661",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "36b1306a115341f4b4d9407fb34974e0",
+            "uuid": "3ec77201bbcd4ecd8722658d581a4e60"
+          }
+        ],
+        [
+          "BS170-D74Z",
+          1,
+          "TO-92-3_L4.9-W3.7-P1.27-L",
+          "Q1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C900827",
+            "BOM_Manufacturer": "ON(安森美)",
+            "BOM_Manufacturer Part": "BS170-D74Z",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "6924b36489de4921bb29ca14bf27c33f",
+            "uuid": "12c5a57df25049859e1ee191711da510"
+          }
+        ],
+        [
+          "10k",
+          2,
+          "R0603",
+          "R1,R4",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "bb009484ef804a24ac5d18c54b249586"
+          }
+        ],
+        [
+          "4k7",
+          1,
+          "R0603",
+          "R2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "bb009484ef804a24ac5d18c54b249586"
+          }
+        ],
+        [
+          "200ohm",
+          1,
+          "R0603",
+          "R3",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "bb009484ef804a24ac5d18c54b249586"
+          }
+        ],
+        [
+          "ATTINY13-20PU",
+          1,
+          "DIP-8_L9.2-W6.4-P2.54-LS8.7-BL",
+          "U1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "MICROCHIP",
+            "BOM_Manufacturer Part": "ATTINY13-20PU",
+            "BOM_Supplier Part": "C145757",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "f06687f6b6924b4bb859660f62897498",
+            "uuid": "08f35fce52ac4842be6d40a9914d3920"
+          }
+        ],
+        [
+          "L78L05",
+          1,
+          "TO-92-3_L4.8-W3.7-P2.54-L",
+          "U2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "STMicroelectronics",
+            "BOM_Manufacturer Part": "L78L05ACZTR",
+            "BOM_Supplier Part": "C118270",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "619489e674074de888fe8dd8f6b9799e",
+            "uuid": "fbff61403a574368b0ac2b8760714444"
+          }
+        ],
+        [
+          "DS18B20+",
+          1,
+          "TO-92-3_L4.9-W3.7-P1.27-L",
+          "U3",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "MAXIM",
+            "BOM_Manufacturer Part": "DS18B20+",
+            "BOM_Supplier Part": "C9753",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "6924b36489de4921bb29ca14bf27c33f",
+            "uuid": "7673f34f99c1428db8c9a80b816cae35"
+          }
+        ]
+      ],
+      "updateTime": 1636657249,
+      "createTime": 1635094572,
+      "histories": [],
+      "created_at": "2021-10-24 18:56:12",
+      "updated_at": "2021-11-11 20:00:49"
+    }
+  ],
+  "sort": [],
+  "title": "PWM fan temperature regulator",
+  "foldername": "PWM fan temperature regulator",
+  "schfilename": "PWM fan temperature regulator.json",
+  "schfilemtime": 1636657249161
+}
