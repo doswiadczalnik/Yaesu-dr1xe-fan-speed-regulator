@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <OneWire.h>
+#include <avr/sleep.h>
 
 #define DS18B20_SKIP_ROM	0xCC
 #define DS18B20_CONVERT_T 0x44
@@ -57,13 +58,33 @@ void initPwm()
   TCCR0A |= _BV(WGM01)|_BV(WGM00); // set timer mode to FAST PWM and enable PWM signal on pin (AC0A => PB0)
 }
 
-void setup() {
-  cli();
+void initSleep()
+{
+  set_sleep_mode(SLEEP_MODE_IDLE);
+  sleep_enable();
+}
+
+void initWatchdog()
+{
+  MCUSR &= ~_BV(WDRF);
+  WDTCR |= _BV(WDTIE)|_BV(WDP3)|_BV(WDP0);
+}
+
+ISR(WDT_vect) //empty - do nothing, just wakeup
+{
+}
+
+void setup()
+{
+  sei();
+  initWatchdog();
   initPwm();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  wdt_reset();
+
   temperature = readTemperature();
 
   tempDiff = temperature - TEMP_START_TEMP;
@@ -99,5 +120,7 @@ void loop() {
     isPwmRunning = false;
   }
 
-  _delay_ms(9000);
+  initSleep();
+  sleep_cpu();
+  sleep_disable();
 }
