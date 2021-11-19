@@ -9,7 +9,7 @@
 #define FAN_PIN PB0 // Analog output pin that the FAN is attached to
 #define TEMP_SENSOR_PIN PB2 // Digital input pin that the DS18B20 sensor is attached to
 
-#define PWM_MIN_VALUE 50
+#define PWM_MIN_VALUE 40
 #define TEMP_START_TEMP 30
 #define PWM_START_VALUE 255
 
@@ -58,9 +58,9 @@ void initPwm()
   TCCR0A |= _BV(WGM01)|_BV(WGM00); // set timer mode to FAST PWM and enable PWM signal on pin (AC0A => PB0)
 }
 
-void initSleep()
+void initSleep(int8_t sleepMode)
 {
-  set_sleep_mode(SLEEP_MODE_IDLE);
+  set_sleep_mode(sleepMode);
   sleep_enable();
 }
 
@@ -112,15 +112,19 @@ void loop()
       OCR0A = (uint8_t)outputValue;
     }
     else
+    {
       OCR0A = (uint8_t)outputValue;
+    }
+
+      initSleep(SLEEP_MODE_IDLE);
   }
   else
   {
     stopPwm();
     isPwmRunning = false;
+    initSleep(SLEEP_MODE_PWR_DOWN);
   }
 
-  initSleep();
   sleep_cpu();
   sleep_disable();
 }
